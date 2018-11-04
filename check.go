@@ -39,6 +39,7 @@ func checkSite(name string) (result Result, err error) {
 	return result, nil
 }
 
+// Run tests site forever
 func (sitest Sitest) Run(name string) {
 
 	config := sitest.Sites[name]

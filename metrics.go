@@ -14,7 +14,7 @@ type PromCollectors struct {
 	hash     *prometheus.GaugeVec
 }
 
-// RegisterCollectors registers all collectors
+// Register registers all collectors
 func (promCollectors *PromCollectors) Register() {
 
 	promCollectors.count = prometheus.NewCounterVec(prometheus.CounterOpts{
@@ -55,7 +55,7 @@ func (promCollectors *PromCollectors) Register() {
 
 }
 
-// SetMeasurements copied values from latest measurements to Prometheus collectors
+// Update copied values from latest measurements to Prometheus collectors
 func (promCollectors *PromCollectors) Update(site string, result Result, err error) {
 
 	siteLabels := prometheus.Labels{"site": site}

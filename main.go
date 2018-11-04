@@ -8,10 +8,12 @@ import (
 	"time"
 )
 
+// Config section for each site
 type Config struct {
 	Interval time.Duration
 }
 
+// Result contains result of the one/last check
 type Result struct {
 	StatusCode int
 	Length     int
@@ -19,6 +21,7 @@ type Result struct {
 	Hash       uint64
 }
 
+// Sitest has main parameters and attributes
 type Sitest struct {
 	ConfigFile    string
 	ListenAddress string

@@ -6,12 +6,13 @@ import (
 	"log"
 )
 
-func prepareSiteconfig(config *Config, def_config Config) {
+func prepareSiteconfig(config *Config, defConfig Config) {
 	if config.Interval == 0 {
-		config.Interval = def_config.Interval
+		config.Interval = defConfig.Interval
 	}
 }
 
+// LoadConfig reads configuration from yaml file
 func (sitest *Sitest) LoadConfig() {
 
 	source, err := ioutil.ReadFile(sitest.ConfigFile)

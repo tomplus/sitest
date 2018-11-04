@@ -8,7 +8,7 @@ import (
 
 func (sitest Sitest) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
-	tmpl_txt := `
+	tmplTxt := `
 <html>
 <head>
 <title>Sitest</title>
@@ -29,7 +29,7 @@ Metrics <a href="/metrics">/metrics</a>
 </body>
 </html>`
 
-	tmpl, err := template.New("status-page").Parse(tmpl_txt)
+	tmpl, err := template.New("status-page").Parse(tmplTxt)
 	if err != nil {
 		log.Fatal(err)
 	}
