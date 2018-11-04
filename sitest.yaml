@@ -1,0 +1,8 @@
+default:
+  interval: 1m
+
+sites:
+  "https://golang.org":
+    interval: 15s
+  "https://api.myip.com/": {}
+  "http://example.com/": {}
