@@ -45,9 +45,9 @@ func (sitest Sitest) Run(name string) {
 	config := sitest.Sites[name]
 
 	// slow start
-	slow_start := time.Duration(rand.Float64()*config.Interval.Seconds()) * time.Second
-	log.Printf("[%v] slow start, sleep %v", name, slow_start)
-	time.Sleep(slow_start)
+	slowStart := time.Duration(rand.Float64()*config.Interval.Seconds()) * time.Second
+	log.Printf("[%v] slow start, sleep %v", name, slowStart)
+	time.Sleep(slowStart)
 
 	for {
 		log.Printf("[%v] querying...", name)
