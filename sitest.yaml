@@ -1,8 +1,15 @@
-default:
-  interval: 1m
+# configuration file fo sitest tool
+# format: yaml
 
+# default section for each site
+default:
+  interval: 1m  # how often test site
+
+# site list with configuration
 sites:
   "https://golang.org":
-    interval: 15s
-  "https://api.myip.com/": {}
+    interval: 15s  # own settings, test every 15 sec
+
+  "https://api.myip.com/": {}  # default configuration
+
   "http://example.com/": {}
