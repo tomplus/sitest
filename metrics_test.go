@@ -33,7 +33,7 @@ func TestMetricCounting(t *testing.T) {
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
 
-	expected_body := `# HELP sitest_code Response code
+	expectedBody := `# HELP sitest_code Response code
 # TYPE sitest_code gauge
 sitest_code{site="my-site.example.com"} 200
 # HELP sitest_count Total number of performed check
@@ -62,7 +62,7 @@ sitest_hash{site="my-site.example.com"} 7
 # TYPE sitest_length gauge
 sitest_length{site="my-site.example.com"} 5
 `
-	assert.Equal(string(body[:]), expected_body, "expected_body")
+	assert.Equal(string(body[:]), expectedBody, "expected body")
 
 }
 
@@ -88,7 +88,7 @@ func TestMetricError(t *testing.T) {
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
 
-	expected_body := `# HELP sitest_code Response code
+	expectedBody := `# HELP sitest_code Response code
 # TYPE sitest_code gauge
 sitest_code{site="my-site.example.com"} 0
 # HELP sitest_count Total number of performed check
@@ -120,6 +120,6 @@ sitest_hash{site="my-site.example.com"} 0
 # TYPE sitest_length gauge
 sitest_length{site="my-site.example.com"} 0
 `
-	assert.Equal(string(body[:]), expected_body, "expected_body")
+	assert.Equal(string(body[:]), expectedBody, "expected body")
 
 }
