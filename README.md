@@ -1,5 +1,6 @@
 # sitest
 
+[![Build Status](https://travis-ci.org/tomplus/sitest.svg?branch=master)](https://travis-ci.org/tomplus/sitest)
 [![Go Report Card](https://goreportcard.com/badge/github.com/tomplus/airly-exporter)](https://goreportcard.com/report/github.com/tomplus/sitest)
 
 Prometheus exporter to test HTTP(s) sites
