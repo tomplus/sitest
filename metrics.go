@@ -6,52 +6,55 @@ import (
 
 // PromCollectors has instances of Prometheus Collectors
 type PromCollectors struct {
-	count    *prometheus.CounterVec
-	error    *prometheus.CounterVec
-	code     *prometheus.GaugeVec
-	duration *prometheus.HistogramVec
-	length   *prometheus.GaugeVec
-	hash     *prometheus.GaugeVec
+	count      *prometheus.CounterVec
+	error      *prometheus.CounterVec
+	code       *prometheus.GaugeVec
+	duration   *prometheus.HistogramVec
+	length     *prometheus.GaugeVec
+	hash       *prometheus.GaugeVec
+	registerer prometheus.Registerer
 }
 
 // Register registers all collectors
-func (promCollectors *PromCollectors) Register() {
+func (promCollectors *PromCollectors) Register(registerer prometheus.Registerer) {
+
+	promCollectors.registerer = registerer
 
 	promCollectors.count = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Name: "sitest_count",
 		Help: "Total number of performed check",
 	}, []string{"site"})
-	prometheus.MustRegister(promCollectors.count)
+	registerer.MustRegister(promCollectors.count)
 
 	promCollectors.error = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Name: "sitest_error",
 		Help: "Total number of error",
 	}, []string{"site"})
-	prometheus.MustRegister(promCollectors.error)
+	registerer.MustRegister(promCollectors.error)
 
 	promCollectors.code = prometheus.NewGaugeVec(prometheus.GaugeOpts{
 		Name: "sitest_code",
 		Help: "Response code",
 	}, []string{"site"})
-	prometheus.MustRegister(promCollectors.code)
+	registerer.MustRegister(promCollectors.code)
 
 	promCollectors.duration = prometheus.NewHistogramVec(prometheus.HistogramOpts{
 		Name: "sitest_duration_seconds",
 		Help: "Histogram of request duration",
 	}, []string{"site"})
-	prometheus.MustRegister(promCollectors.duration)
+	registerer.MustRegister(promCollectors.duration)
 
 	promCollectors.length = prometheus.NewGaugeVec(prometheus.GaugeOpts{
 		Name: "sitest_length",
 		Help: "Page length",
 	}, []string{"site"})
-	prometheus.MustRegister(promCollectors.length)
+	registerer.MustRegister(promCollectors.length)
 
 	promCollectors.hash = prometheus.NewGaugeVec(prometheus.GaugeOpts{
 		Name: "sitest_hash",
 		Help: "Page hash",
 	}, []string{"site"})
-	prometheus.MustRegister(promCollectors.hash)
+	registerer.MustRegister(promCollectors.hash)
 
 }
 

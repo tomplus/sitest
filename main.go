@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"log"
 	"net/http"
@@ -37,7 +38,7 @@ func main() {
 	flag.Parse()
 
 	sitest.LoadConfig()
-	sitest.Metrics.Register()
+	sitest.Metrics.Register(prometheus.DefaultRegisterer)
 
 	log.Printf("Start querying sites...")
 	for site := range sitest.Sites {
