@@ -41,7 +41,24 @@ sites:
 
 ## Running
 
-TODO
+You can use a Docker image to run the application.
+The image doesn't contain configuration file. You can provide it
+as a mount like in the example below:
+
+```
+$ docker run -v `pwd`/config:/etc/sitest tpimages/sitest:latest
+
+2018/01/01 11:11:11 Config loaded:
+2018/01/01 11:11:11 - site: http://example.com/ params: {1m0s}
+2018/01/01 11:11:11 - site: https://golang.org params: {15s}
+2018/01/01 11:11:11 - site: https://api.myip.com/ params: {1m0s}
+2018/01/01 11:11:11 Start querying sites...
+2018/01/01 11:11:11 [https://golang.org] slow start, sleep 14s
+2018/01/01 11:11:11 [http://example.com/] slow start, sleep 36s
+2018/01/01 11:11:11 [https://api.myip.com/] slow start, sleep 39s
+2018/01/01 11:11:25 [https://golang.org] querying...
+2018/01/01 11:11:25 [https://golang.org] success, result: {StatusCode:200 Length:8099 Duration:423.640439ms Hash:13824383691894627592}
+```
 
 ## List of exposed metrics
 
