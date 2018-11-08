@@ -33,7 +33,7 @@ type Sitest struct {
 func main() {
 
 	sitest := Sitest{}
-	flag.StringVar(&sitest.ConfigFile, "config_file", "./sitest.yaml", "path to config-file")
+	flag.StringVar(&sitest.ConfigFile, "config_file", "/etc/sitest/sitest.yaml", "path to config-file")
 	flag.StringVar(&sitest.ListenAddress, "listen_addr", "0.0.0.0:8080", "listen address")
 	flag.Parse()
 
