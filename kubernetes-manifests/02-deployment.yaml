@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sitest
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sitest
+    spec:
+      containers:
+      - name: sitest
+        image: tpimages/sitest:latest
+        ports:
+        - name: metrics
+          containerPort: 8080
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/sitest
+      volumes:
+      - name: config-volume
+        configMap:
+          name: sitest

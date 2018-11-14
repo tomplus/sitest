@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: sitest
+  labels:
+    app: sitest
+spec:
+  selector:
+    app: sitest
+  ports:
+  - name: metrics
+    port: 8080
