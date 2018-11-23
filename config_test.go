@@ -26,7 +26,7 @@ sites:
     interval: 15s`
 
 	expectedConfig := map[string]Config{
-		"https://site1/": Config{Interval: 15000000000},
+		"https://site1/": {Interval: 15000000000},
 	}
 
 	tmpfile, err := createTempConfig(configFile)
@@ -51,8 +51,8 @@ sites:
   "https://site3/": {}`
 
 	expectedConfig := map[string]Config{
-		"https://site2/": Config{Interval: 15000000000},
-		"https://site3/": Config{Interval: 30000000000},
+		"https://site2/": {Interval: 15000000000},
+		"https://site3/": {Interval: 30000000000},
 	}
 
 	tmpfile, err := createTempConfig(configFile)
