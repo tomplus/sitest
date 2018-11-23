@@ -60,7 +60,7 @@ $ docker run -v `pwd`/config:/etc/sitest tpimages/sitest:latest
 2018/01/01 11:11:25 [https://golang.org] success, result: {StatusCode:200 Length:8099 Duration:423.640439ms Hash:13824383691894627592}
 ```
 
-If you have a Kubernetes cluster you can deploy sitest using mainifests from `./kubernetes-manifests`:
+If you have a Kubernetes cluster you can deploy the _sitest_ using mainifests from `./kubernetes-manifests`:
 
 ```
 kubectl apply -f ./kubernetes-manifests
