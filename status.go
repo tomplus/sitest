@@ -8,8 +8,7 @@ import (
 
 func (sitest Sitest) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
-	tmplTxt := `
-<html>
+	tmplTxt := `<html>
 <head>
 <title>Sitest</title>
 </head>

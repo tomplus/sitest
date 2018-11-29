@@ -9,7 +9,7 @@ Prometheus exporter to test HTTP(s) sites
 
 Sitest (web-sites + test = sitest) is a simple tool to check websites. It gets a defined url and create metrics
 with respons code, response time, page size, page hash etc. The metrics are exposed in the Prometheus format
-and can be used to trigger alerts if the website is down, content was changed or responds slowly.
+and can be used to trigger alerts if the website is down, content has been changed or responds slowly.
 
 ## Configuration
 
