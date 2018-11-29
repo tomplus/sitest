@@ -21,7 +21,7 @@ func TestStatusPage(t *testing.T) {
 
 	assert.Equal(resp.StatusCode, 200, "response from prometheus handler")
 
-	expected_body := `<html>
+	expectedBody := `<html>
 <head>
 <title>Sitest</title>
 </head>
@@ -42,5 +42,5 @@ Metrics <a href="/metrics">/metrics</a>
 </html>`
 
 	body, _ := ioutil.ReadAll(resp.Body)
-	assert.Equal(string(body[:]), expected_body, "expected body")
+	assert.Equal(string(body[:]), expectedBody, "expected body")
 }
