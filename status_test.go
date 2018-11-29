@@ -12,14 +12,14 @@ import (
 func TestStatusPage(t *testing.T) {
 	assert := assert.New(t)
 
-	sitest := Sitest{ConfigFile: "/tmp/mock", Sites: map[string]Config{"http://example.com": Config{Interval: time.Duration(9)}}}
+	sitest := Sitest{ConfigFile: "/tmp/mock", Sites: map[string]Config{"http://example.com": {Interval: time.Duration(9)}}}
 	ts := httptest.NewServer(sitest)
 	defer ts.Close()
 
 	resp, _ := http.Get(ts.URL)
-	defer resp.Body.Close()
-
 	assert.Equal(resp.StatusCode, 200, "response from prometheus handler")
+
+	defer resp.Body.Close()
 
 	expectedBody := `<html>
 <head>
