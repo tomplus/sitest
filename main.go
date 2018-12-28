@@ -6,6 +6,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"log"
 	"net/http"
+	"sync"
 	"time"
 )
 
@@ -20,19 +21,28 @@ type Result struct {
 	Length     int
 	Duration   time.Duration
 	Hash       uint64
+	Time       time.Time
+}
+
+// Site contains configuration and results
+type Site struct {
+	Config     Config
+	LastResult Result
+	Mutex      sync.Mutex
 }
 
 // Sitest has main parameters and attributes
 type Sitest struct {
 	ConfigFile    string
 	ListenAddress string
-	Sites         map[string]Config
+	Sites         map[string]*Site
 	Metrics       PromCollectors
+	StartTime     time.Time
 }
 
 func main() {
 
-	sitest := Sitest{}
+	sitest := Sitest{StartTime: time.Now()}
 	flag.StringVar(&sitest.ConfigFile, "config_file", "/etc/sitest/sitest.yaml", "path to config-file")
 	flag.StringVar(&sitest.ListenAddress, "listen_addr", "0.0.0.0:8080", "listen address")
 	flag.Parse()
@@ -47,5 +57,7 @@ func main() {
 
 	http.Handle("/", sitest)
 	http.Handle("/metrics", promhttp.Handler())
+
 	log.Fatal(http.ListenAndServe(sitest.ListenAddress, nil))
+
 }
