@@ -35,32 +35,32 @@ func TestMetricCounting(t *testing.T) {
 
 	expectedBody := `# HELP sitest_code Response code
 # TYPE sitest_code gauge
-sitest_code{site="my-site.example.com"} 200
+sitest_code{site="my-site.example.com"} 200.0
 # HELP sitest_count Total number of performed check
 # TYPE sitest_count counter
-sitest_count{site="my-site.example.com"} 1
+sitest_count{site="my-site.example.com"} 1.0
 # HELP sitest_duration_seconds Histogram of request duration
 # TYPE sitest_duration_seconds histogram
-sitest_duration_seconds_bucket{site="my-site.example.com",le="0.005"} 1
-sitest_duration_seconds_bucket{site="my-site.example.com",le="0.01"} 1
-sitest_duration_seconds_bucket{site="my-site.example.com",le="0.025"} 1
-sitest_duration_seconds_bucket{site="my-site.example.com",le="0.05"} 1
-sitest_duration_seconds_bucket{site="my-site.example.com",le="0.1"} 1
-sitest_duration_seconds_bucket{site="my-site.example.com",le="0.25"} 1
-sitest_duration_seconds_bucket{site="my-site.example.com",le="0.5"} 1
-sitest_duration_seconds_bucket{site="my-site.example.com",le="1"} 1
-sitest_duration_seconds_bucket{site="my-site.example.com",le="2.5"} 1
-sitest_duration_seconds_bucket{site="my-site.example.com",le="5"} 1
-sitest_duration_seconds_bucket{site="my-site.example.com",le="10"} 1
-sitest_duration_seconds_bucket{site="my-site.example.com",le="+Inf"} 1
+sitest_duration_seconds_bucket{site="my-site.example.com",le="0.005"} 1.0
+sitest_duration_seconds_bucket{site="my-site.example.com",le="0.01"} 1.0
+sitest_duration_seconds_bucket{site="my-site.example.com",le="0.025"} 1.0
+sitest_duration_seconds_bucket{site="my-site.example.com",le="0.05"} 1.0
+sitest_duration_seconds_bucket{site="my-site.example.com",le="0.1"} 1.0
+sitest_duration_seconds_bucket{site="my-site.example.com",le="0.25"} 1.0
+sitest_duration_seconds_bucket{site="my-site.example.com",le="0.5"} 1.0
+sitest_duration_seconds_bucket{site="my-site.example.com",le="1.0"} 1.0
+sitest_duration_seconds_bucket{site="my-site.example.com",le="2.5"} 1.0
+sitest_duration_seconds_bucket{site="my-site.example.com",le="5.0"} 1.0
+sitest_duration_seconds_bucket{site="my-site.example.com",le="10.0"} 1.0
+sitest_duration_seconds_bucket{site="my-site.example.com",le="+Inf"} 1.0
 sitest_duration_seconds_sum{site="my-site.example.com"} 6e-09
-sitest_duration_seconds_count{site="my-site.example.com"} 1
+sitest_duration_seconds_count{site="my-site.example.com"} 1.0
 # HELP sitest_hash Page hash
 # TYPE sitest_hash gauge
-sitest_hash{site="my-site.example.com"} 7
+sitest_hash{site="my-site.example.com"} 7.0
 # HELP sitest_length Page length
 # TYPE sitest_length gauge
-sitest_length{site="my-site.example.com"} 5
+sitest_length{site="my-site.example.com"} 5.0
 `
 	assert.Equal(string(body[:]), expectedBody, "expected body")
 
@@ -90,35 +90,35 @@ func TestMetricError(t *testing.T) {
 
 	expectedBody := `# HELP sitest_code Response code
 # TYPE sitest_code gauge
-sitest_code{site="my-site.example.com"} 0
+sitest_code{site="my-site.example.com"} 0.0
 # HELP sitest_count Total number of performed check
 # TYPE sitest_count counter
-sitest_count{site="my-site.example.com"} 1
+sitest_count{site="my-site.example.com"} 1.0
 # HELP sitest_duration_seconds Histogram of request duration
 # TYPE sitest_duration_seconds histogram
-sitest_duration_seconds_bucket{site="my-site.example.com",le="0.005"} 1
-sitest_duration_seconds_bucket{site="my-site.example.com",le="0.01"} 1
-sitest_duration_seconds_bucket{site="my-site.example.com",le="0.025"} 1
-sitest_duration_seconds_bucket{site="my-site.example.com",le="0.05"} 1
-sitest_duration_seconds_bucket{site="my-site.example.com",le="0.1"} 1
-sitest_duration_seconds_bucket{site="my-site.example.com",le="0.25"} 1
-sitest_duration_seconds_bucket{site="my-site.example.com",le="0.5"} 1
-sitest_duration_seconds_bucket{site="my-site.example.com",le="1"} 1
-sitest_duration_seconds_bucket{site="my-site.example.com",le="2.5"} 1
-sitest_duration_seconds_bucket{site="my-site.example.com",le="5"} 1
-sitest_duration_seconds_bucket{site="my-site.example.com",le="10"} 1
-sitest_duration_seconds_bucket{site="my-site.example.com",le="+Inf"} 1
-sitest_duration_seconds_sum{site="my-site.example.com"} 0
-sitest_duration_seconds_count{site="my-site.example.com"} 1
+sitest_duration_seconds_bucket{site="my-site.example.com",le="0.005"} 1.0
+sitest_duration_seconds_bucket{site="my-site.example.com",le="0.01"} 1.0
+sitest_duration_seconds_bucket{site="my-site.example.com",le="0.025"} 1.0
+sitest_duration_seconds_bucket{site="my-site.example.com",le="0.05"} 1.0
+sitest_duration_seconds_bucket{site="my-site.example.com",le="0.1"} 1.0
+sitest_duration_seconds_bucket{site="my-site.example.com",le="0.25"} 1.0
+sitest_duration_seconds_bucket{site="my-site.example.com",le="0.5"} 1.0
+sitest_duration_seconds_bucket{site="my-site.example.com",le="1.0"} 1.0
+sitest_duration_seconds_bucket{site="my-site.example.com",le="2.5"} 1.0
+sitest_duration_seconds_bucket{site="my-site.example.com",le="5.0"} 1.0
+sitest_duration_seconds_bucket{site="my-site.example.com",le="10.0"} 1.0
+sitest_duration_seconds_bucket{site="my-site.example.com",le="+Inf"} 1.0
+sitest_duration_seconds_sum{site="my-site.example.com"} 0.0
+sitest_duration_seconds_count{site="my-site.example.com"} 1.0
 # HELP sitest_error Total number of error
 # TYPE sitest_error counter
-sitest_error{site="my-site.example.com"} 1
+sitest_error{site="my-site.example.com"} 1.0
 # HELP sitest_hash Page hash
 # TYPE sitest_hash gauge
-sitest_hash{site="my-site.example.com"} 0
+sitest_hash{site="my-site.example.com"} 0.0
 # HELP sitest_length Page length
 # TYPE sitest_length gauge
-sitest_length{site="my-site.example.com"} 0
+sitest_length{site="my-site.example.com"} 0.0
 `
 	assert.Equal(string(body[:]), expectedBody, "expected body")
 
