@@ -27,6 +27,7 @@ func checkSite(name string) (result Result, err error) {
 	defer resp.Body.Close()
 
 	result.Duration = time.Since(start)
+	result.Time = time.Now()
 	result.StatusCode = resp.StatusCode
 
 	body, err := ioutil.ReadAll(resp.Body)
@@ -39,13 +40,25 @@ func checkSite(name string) (result Result, err error) {
 	return result, nil
 }
 
+func (site *Site) GetLastResult() Result {
+	site.Mutex.Lock()
+	defer site.Mutex.Unlock()
+	return site.LastResult
+}
+
+func (site *Site) SetLastResult(result Result) {
+	site.Mutex.Lock()
+	defer site.Mutex.Unlock()
+	site.LastResult = result
+}
+
 // Run tests site forever
 func (sitest Sitest) Run(name string) {
 
-	config := sitest.Sites[name]
+	site := sitest.Sites[name]
 
 	// slow start
-	slowStart := time.Duration(rand.Float64()*config.Interval.Seconds()) * time.Second
+	slowStart := time.Duration(rand.Float64()*site.Config.Interval.Seconds()) * time.Second
 	log.Printf("[%v] slow start, sleep %v", name, slowStart)
 	time.Sleep(slowStart)
 
@@ -57,7 +70,9 @@ func (sitest Sitest) Run(name string) {
 		} else {
 			log.Printf("[%v] success, result: %+v", name, result)
 		}
+
+		site.SetLastResult(result)
 		sitest.Metrics.Update(name, result, err)
-		time.Sleep(config.Interval - result.Duration)
+		time.Sleep(site.Config.Interval - result.Duration)
 	}
 }

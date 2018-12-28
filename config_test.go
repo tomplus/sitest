@@ -25,9 +25,8 @@ sites:
   "https://site1/":
     interval: 15s`
 
-	expectedConfig := map[string]Config{
-		"https://site1/": {Interval: 15000000000},
-	}
+	site1 := Site{Config: Config{Interval: 15000000000}}
+	expectedSites := map[string]*Site{"https://site1/": &site1}
 
 	tmpfile, err := createTempConfig(configFile)
 	defer os.Remove(tmpfile.Name())
@@ -37,7 +36,7 @@ sites:
 	sitest.ConfigFile = tmpfile.Name()
 	sitest.LoadConfig()
 
-	assert.Equal(sitest.Sites, expectedConfig, "assert length")
+	assert.Equal(sitest.Sites, expectedSites, "assert sites")
 }
 func TestLoadConfigWithDefault(t *testing.T) {
 
@@ -50,10 +49,9 @@ sites:
     interval: 15s
   "https://site3/": {}`
 
-	expectedConfig := map[string]Config{
-		"https://site2/": {Interval: 15000000000},
-		"https://site3/": {Interval: 30000000000},
-	}
+	site2 := Site{Config: Config{Interval: 15000000000}}
+	site3 := Site{Config: Config{Interval: 30000000000}}
+	expectedSites := map[string]*Site{"https://site2/": &site2, "https://site3/": &site3}
 
 	tmpfile, err := createTempConfig(configFile)
 	defer os.Remove(tmpfile.Name())
@@ -63,5 +61,6 @@ sites:
 	sitest.ConfigFile = tmpfile.Name()
 	sitest.LoadConfig()
 
-	assert.Equal(sitest.Sites, expectedConfig, "assert length")
+	assert.Equal(sitest.Sites, expectedSites, "assert sites")
+
 }

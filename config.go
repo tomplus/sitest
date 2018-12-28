@@ -34,11 +34,15 @@ func (sitest *Sitest) LoadConfig() {
 
 	log.Println("Config loaded:")
 
-	sitest.Sites = make(map[string]Config)
+	sitest.Sites = make(map[string]*Site)
 	for k, v := range config.Sites {
 		prepareSiteconfig(&v, config.Default)
 		log.Printf("- site: %v params: %v", k, v)
-		sitest.Sites[k] = v
+		sitest.Sites[k] = &Site{Config: v}
 	}
 
+}
+
+func (sitest Sitest) Test() string {
+	return "abc"
 }
