@@ -40,7 +40,7 @@ func checkSite(name string) (result Result, err error) {
 	return result, nil
 }
 
-// Get last result for site
+// GetLastResult returns the lastes result for site
 func (site *Site) GetLastResult() Result {
 	site.Mutex.Lock()
 	defer site.Mutex.Unlock()
