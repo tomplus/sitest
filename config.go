@@ -42,7 +42,3 @@ func (sitest *Sitest) LoadConfig() {
 	}
 
 }
-
-func (sitest Sitest) Test() string {
-	return "abc"
-}

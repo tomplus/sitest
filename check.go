@@ -40,13 +40,14 @@ func checkSite(name string) (result Result, err error) {
 	return result, nil
 }
 
+// Get last result for site
 func (site *Site) GetLastResult() Result {
 	site.Mutex.Lock()
 	defer site.Mutex.Unlock()
 	return site.LastResult
 }
 
-func (site *Site) SetLastResult(result Result) {
+func (site *Site) setLastResult(result Result) {
 	site.Mutex.Lock()
 	defer site.Mutex.Unlock()
 	site.LastResult = result
@@ -71,7 +72,7 @@ func (sitest Sitest) Run(name string) {
 			log.Printf("[%v] success, result: %+v", name, result)
 		}
 
-		site.SetLastResult(result)
+		site.setLastResult(result)
 		sitest.Metrics.Update(name, result, err)
 		time.Sleep(site.Config.Interval - result.Duration)
 	}
